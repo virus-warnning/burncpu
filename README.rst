@@ -46,25 +46,31 @@ WorkerDispatcher.__init__(worker_count=0, use_core=0, time_limit=0)
 
 Create a dispatcher instace.
 
-:worker_count: How many threads would be created, 0 means create ([use_core] * 2) threads.
-:use_core: How many cores would be use, 0 means all cores.
-:time_limit: Stop workers after [time_limit] seconds.
+worker_count
+  How many threads would be created, 0 means create ([use_core] * 2) threads.
+use_core
+  How many cores would be use, 0 means all cores.
+time_limit
+  Stop workers after [time_limit] seconds.
 
 WorkerDispatcher.dispatch(func, args)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Dispatch a function to one of workers randomly.
 
-:func: Function to call.
-:args: Argument list of this function.
+func
+  Function to call.
+args
+  Argument list of this function.
 
 WorkerDispatcher.sleep(seconds)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sleep dispatcher for given seconds.
 
-:seconds: Seconds to sleep. Dispatcher would not sleep given seconds actually.
-          It sleep many times during given seconds, so that system signal (e.g. Ctrl+C) can be handled.
+seconds
+  Seconds to sleep. Dispatcher would not sleep given seconds actually.
+  It sleep many times during given seconds, so that system signal (e.g. Ctrl+C) can be handled.
 
 WorkerDispatcher.join()
 ^^^^^^^^^^^^^^^^^^^^^^^
