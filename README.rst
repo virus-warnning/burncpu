@@ -4,7 +4,7 @@ Features
 ========
 - All CPU cores can be used.
 - Workers can be stopped gracefully by system signals.
-- Easy to use.
+- Pure python code.
 
 Quickstart
 ==========
@@ -31,28 +31,47 @@ Finally copy and modify the `source code <https://github.com/virus-warnning/burn
 Reference
 =========
 
+To import
+---------
+
 .. code:: python
 
   from burncpu.dispatcher import WorkerDispatcher
 
+class WorkerDispatcher
+----------------------
+
 WorkerDispatcher.__init__(worker_count=0, use_core=0, time_limit=0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Create a dispatcher instace.
+
 :worker_count: How many threads would be created, 0 means create ([use_core] * 2) threads.
 :use_core: How many cores would be use, 0 means all cores.
 :time_limit: Stop workers after [time_limit] seconds.
 
-WorkerDispatcher.dispatch(func, *args)
-Dispatch a function to be called by worker.
-:func: Function to be called by worker.
+WorkerDispatcher.dispatch(func, args)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Dispatch a function to one of workers randomly.
+
+:func: Function to call.
 :args: Argument list of this function.
 
 WorkerDispatcher.sleep(seconds)
-Sleep dispatcher.
-:seconds: Sleep time. Dispatcher would not sleep given seconds actually.
-          It sleep many times during given seconds, so that system signal can be handled.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sleep dispatcher for given seconds.
+
+:seconds: Seconds to sleep. Dispatcher would not sleep given seconds actually.
+          It sleep many times during given seconds, so that system signal (e.g. Ctrl+C) can be handled.
 
 WorkerDispatcher.join()
-Wait for running functions.
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Wait until all workers stopped.
 
 WorkerDispatcher.is_alive()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Check if the dispatcher is alive.
