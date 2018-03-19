@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name='burncpu',
-  version='0.0.3',
+  version='0.0.4',
   description='A worker dispatcher using multiprocess and multithread.',
   url='https://github.com/virus-warnning/burncpu',
   license='MIT',
