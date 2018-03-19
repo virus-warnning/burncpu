@@ -47,11 +47,12 @@ WorkerDispatcher.__init__(worker_count=0, use_core=0, time_limit=0)
 Create a dispatcher instace.
 
 worker_count
-  How many threads would be created, 0 means create ([use_core] * 2) threads.
+  How many threads would be created, 0 means to create (use_core * 2) threads.
 use_core
   How many cores would be use, 0 means all cores.
 time_limit
-  Stop workers after [time_limit] seconds.
+  Stop workers after given seconds. Running functions still run at that moment.
+  Queued functions would be cancled.
 
 WorkerDispatcher.dispatch(func, args)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

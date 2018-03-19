@@ -9,7 +9,7 @@ readme.close()
 
 setup(
   name='burncpu',
-  version='0.0.14',
+  version='0.0.16',
   description='A worker dispatcher with multiprocessing and multithreading.',
   long_description=longdesc,
   url='https://github.com/virus-warnning/burncpu',
