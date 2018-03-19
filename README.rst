@@ -58,8 +58,8 @@ WorkerDispatcher.dispatch(func, args)
 
 Dispatch a function to one of workers randomly.
 
-func   Function to call.
-args   Argument list of this function.
+-func   Function to call.
+/args   Argument list of this function.
 
 WorkerDispatcher.sleep(seconds)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
