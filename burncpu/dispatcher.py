@@ -135,6 +135,11 @@ class WorkerDispatcher:
     queue = self.parent_queue_list[idx]
     queue.put((-1, func, args))
 
+  def sleep(self, seconds):
+    BEGIN = time.time()
+    while self.is_alive() and (time.time() - BEGIN) < seconds:
+      time.sleep(0.2)
+
   # Join all processes
   def join(self):
     # Wait for all processes.
@@ -150,32 +155,3 @@ class WorkerDispatcher:
       return False
 
     return True
-
-def one_second_task(a, b):
-  begin = time.time()
-  while (time.time() - begin) < 1.0:
-    a + b
-
-def burn_your_cpu():
-  BEGIN = time.time()
-
-  # Create a worker dispatcher.
-  # You can terminate workers by pressing Ctrl+C or waiting 60 seconds.
-  wd = WorkerDispatcher(time_limit = 60)
-
-  # Take a break.
-  # There are "cores + 1" processes which are idle.
-  time.sleep(10)
-
-  # Let's go!
-  # All of the child processes will be busy.
-  for n in range(60 * mp.cpu_count()):
-    wd.dispatch(one_second_task, (1, 0))
-
-  wd.join()
-
-  ELAPSED = time.time() - BEGIN
-  print('Done ({:.2f}s)'.format(ELAPSED))
-
-if __name__ == '__main__':
-  burn_your_cpu()
